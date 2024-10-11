@@ -1,0 +1,50 @@
+.form-group {
+    position: relative;
+    margin-bottom: 20px; /* Adjust the spacing between form groups */
+    width: 100%;
+  }
+
+.input {
+    display: flex;
+    width: 100%;
+    position: relative;
+    align-items: center;
+}
+
+/*.input__box {
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: calc(10px + 1vmin);
+    border: none;
+} */
+
+.input__box {
+    width: 100%;
+    padding-left: 40px; /* Adds space for the avatar inside the input */
+    padding-right: 10px; /* Optional: Adds space on the right side */
+    height: 40px; /* Adjust the height as needed */
+    box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+    font-size: calc(10px + 1vmin);
+    color: #4E4E4E;
+    border-radius: 10px;
+  }
+  
+  .avatar-container {
+    position: absolute;
+    left: 10px; /* Adjust the position of the avatar */
+    top: 60%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Ensures the avatar doesn't interfere with input focus */
+  }
+
+  .input__submit {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    font-size: calc(10px + 2vmin);
+    background-color: #DAA520;
+    color: #FFFFF0;
+    border-radius: 27px;
+    border: none;
+  }
