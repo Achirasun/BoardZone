@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './NavBar.css'
 import { Link, NavLink } from 'react-router-dom'
 import { IoStar } from "react-icons/io5";
-
+import { RxAvatar } from "react-icons/rx";
 
 export const NavBar = () => {
 
@@ -39,6 +39,11 @@ export const NavBar = () => {
         <Link to="/" className="title">
           BOARD<IoStar className="star"/>ZONE
         </Link>
+
+        <Link to="/login" className="avatar">
+          <RxAvatar />
+        </Link>
+
       </nav>
 
       <div className={menu_class}>
@@ -47,23 +52,23 @@ export const NavBar = () => {
           <span className="crossbar"></span>
         </div>
 
-        <div className="pages">
+        <div className="menu-pages">
           <span className="menu-line"></span>
 
           <li>
-            <NavLink to="/boardgame" className="page">BOARDGAME</NavLink>
+            <NavLink to="/boardgame" className="menu-page" onClick={closeMenu}>BOARDGAME</NavLink>
           </li>
 
           <span className="menu-line"></span>
 
           <li>
-            <NavLink to="/lobby" className="page">LOBBY</NavLink>
+            <NavLink to="/lobby" className="menu-page" onClick={closeMenu}>LOBBY</NavLink>
           </li>
 
           <span className="menu-line"></span>
 
           <li>
-            <NavLink to="/funds" className="page">FUNDS</NavLink>
+            <NavLink to="/funds" className="menu-page" onClick={closeMenu}>FUNDS</NavLink>
           </li>
 
           <span className="menu-line"></span>
@@ -71,6 +76,8 @@ export const NavBar = () => {
 
 
       </div>
+
+
     </div>
   )
 }

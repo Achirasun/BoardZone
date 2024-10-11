@@ -1,5 +1,6 @@
 nav {
     display: flex;
+    position: relative;
     justify-content: space-between;
     align-items: center;
     height: 64px;
@@ -47,6 +48,14 @@ nav .title .star {
     color: #ffc228;
 }
 
+nav .avatar {
+    justify-content: center;
+    text-align: right; /* Aligns the content to the right */
+    padding-right: 20px;
+    color: #FFFFF0; /* Sets the text color */
+    font-size: calc(30px + 2vmin);
+}
+
 .menu {
     width: 304px;
     height: 100vh;
@@ -54,6 +63,7 @@ nav .title .star {
     position: absolute;
     top: 0;
     flex-direction: column;
+    z-index: 1;
 }
 
 .hidden {
@@ -91,13 +101,13 @@ nav .title .star {
     transform: translateY(-10px) rotate(-45deg);
 }
 
-.menu .pages {
+.menu .menu-pages {
     display: flex;
     flex-direction: column;
     margin: 20px 2px;
 }
 
-.menu .page {
+.menu .menu-page {
     color: white;
     font-size: 30px;
     text-decoration: none;
@@ -109,4 +119,11 @@ nav .title .star {
     height: 2px;
     background-color: #b8860b;
     border-radius: 19px;
+}
+
+.profile {
+    position: relative;
+    width: 55px;
+    height: 55px;
+    color: white;
 }
