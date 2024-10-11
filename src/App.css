@@ -9,7 +9,22 @@
 }
 
 .container {
-    width: 100vw;
-    height: 100vh;
-    background-color: #2e2e2e;
+    width: 100%;
+    min-height: calc(100vh - 64px);
+    padding: 30px;
+    background-color: #2E2E2E;
+    box-sizing: border-box;
+}
+
+.container-inner {
+    max-width: 96vw;
+    min-height: 82vh; /* Creates space between the inner and outer container */
+    padding: 34px;
+    background-color: #4e4e4e; /* Optional: Set a different background color for the inner container */
+    box-sizing: border-box; /* Ensures padding is included in the element's total width and height */
+    border-radius: 27px;
+}
+
+.whitespace-pre-wrap { /*เว้นช่องว่างจากบรรทัดบน 20px*/
+    height: 20px;
 }
