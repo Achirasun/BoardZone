@@ -1,17 +1,21 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
 interface LobbyDetail {
+    //ส่วนทำงานจากเครื่อง
   id: number;
   image: string;
   name: string;
   maxPlayers: number;
   currentPlayers: number;
   timeout: number;
+
+    //ส่วนผู้ใช้ input
+  place: string;
 }
 
 interface LobbyContextProps {
   lobbies: LobbyDetail[];
-  addLobby: (name: string, maxPlayers: number) => void;
+  addLobby: (name: string, maxPlayers: number, place: string, timeout: number) => void;
   joinLobby: (id: number) => void;
   setLobbies: React.Dispatch<React.SetStateAction<LobbyDetail[]>>;
 }
@@ -29,16 +33,17 @@ export const useLobby = () => {
 export const LobbyProvider = ({ children }: { children: ReactNode }) => {
   const [lobbies, setLobbies] = useState<LobbyDetail[]>([]);
 
-  const addLobby = (name: string, maxPlayers: number) => {
+  const addLobby = (name: string, maxPlayers: number, place: string, timeout: number) => {
     const newLobby: LobbyDetail = {
       id: Date.now(),
       image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS7TwVJ0OAzfQ4CevUpqgP1b8TcEyINZwySA&s",
-      name: "BoardGame Gu Yaik Tai",
-      maxPlayers: 8,
+      name,
+      maxPlayers,
       currentPlayers: 1,
-      timeout: Date.now() + ( 1 * 60000 ), // 1 minute timeout
+      timeout: Date.now() + (timeout * 60000), // 1 minute timeout
+      place,
     };
-    setLobbies([...lobbies, newLobby]);
+    setLobbies(prevLobbies => [...prevLobbies, newLobby]);
   };
 
   const joinLobby = (id: number) => {

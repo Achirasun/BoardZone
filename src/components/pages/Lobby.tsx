@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './Lobby.css';
 import { RxAvatar } from "react-icons/rx";
 import {useLobby } from "../../data/LobbyData"
+import { Link } from 'react-router-dom';
 
 export const Lobby = () => {
   // const [lobbies, setLobbies] = useState<LobbyDetail[]>([]);
@@ -16,6 +17,10 @@ export const Lobby = () => {
     return () => clearInterval(interval);
   }, [setLobbies]);
 
+  // useEffect(() => {
+  //   console.log('Current lobbies:', lobbies); // Log the current lobbies
+  // }, [lobbies]);
+
   const formatTime = (timeout:number) => {
     const remainingTime = timeout - Date.now();
     const minutes = Math.floor(remainingTime / 60000);
@@ -27,7 +32,10 @@ export const Lobby = () => {
     
     <div className='container-inner'>
       <div className="Lobby">
-      <button onClick={() => addLobby('New Lobby', 4)}>Add Lobby</button>
+      {/* <button onClick={() => addLobby('New Lobby', 4, "M24", 2)}>Add Lobby</button> */}
+      {/* <Link to="/createlobby" className="title">
+        <button>createlobby</button>
+      </Link> */}
         {lobbies.map(lobby => (
           <div key={lobby.id} className="lobby-detail">
             <img src={lobby.image} alt="" />

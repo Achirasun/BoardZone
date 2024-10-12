@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import './BoardGameDetail.css'
+import { create } from 'domain'
 
 interface BoardGameProps {
     id: string
@@ -31,6 +32,7 @@ const BoardGameDetail = () => {
                     <img src={item.image} alt="" />
                 </div>
                 <div className="description">
+                <button onClick={() => navigate(`/boardgame/${item.id}/createlobby`)}>createlobby</button>
                     <h1 className="boardgame-title">{item.name}</h1>
                     <p className="description">{item.description}</p>
                 </div>
