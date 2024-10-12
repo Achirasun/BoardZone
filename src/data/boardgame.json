@@ -1,0 +1,25 @@
+[
+    {
+        "id": 1,
+        "name": "I'm the Boss",
+        "description": "Test1",
+        "max_player": 6,
+        "image": "/images/boardgame/im-the-boss.jpg"
+    },
+
+    {
+        "id": 2,
+        "name": "Insider",
+        "description": "Test2",
+        "max_player": 10,
+        "image": "/images/boardgame/im-the-boss.jpg"
+    },
+
+    {
+        "id": 3,
+        "name": "Werewolf",
+        "description": "Test2",
+        "max_player": 100,
+        "image": "/images/boardgame/im-the-boss.jpg"
+    }
+]

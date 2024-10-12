@@ -1,27 +1,40 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import './BoardGameCard.css'
 
-const BoardGameCard: React.FC = () => {
-  return (
-    <div className="boardgame-card">
-        <div className="img">
-            <img src="" alt="" />
-        </div>
+interface BoardGameProps {
+    id: number
+    name: string
+    description: string
+    max_player: number
+    image: string
+}
 
-        <div className="title">
-            I'm the Boss
-        </div>
+const BoardGameCard: React.FC<BoardGameProps> = (boardgame: BoardGameProps)  => {
 
-        <div className="box">
-            <div className="rating">
-                Rating : 
+    const navigate = useNavigate();
+
+    return (
+        <div className="boardgame-card" onClick={() => navigate("/lobby")}>
+            <div className="img">
+                <img src={boardgame.image} alt="" />
             </div>
-            <div className="status">
-                Available
-            </div>
-        </div>
 
-    </div>
-  )
+            <div className="title">
+                {boardgame.name}
+            </div>
+
+            <div className="box">
+                <div className="rating">
+                    Rating : 
+                </div>
+                <div className="status">
+                    Available
+                </div>
+            </div>
+
+        </div>
+    )
 }
 
 export default BoardGameCard;

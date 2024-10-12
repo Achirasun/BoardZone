@@ -1,6 +1,7 @@
 import React from 'react'
 import './BoardGame.css'
 import BoardGameCard from '../BoardGameCard/BoardGameCard'
+import BoardGameItem from '../../data/boardgame.json'
 
 
 export const BoardGame = () => {
@@ -9,7 +10,9 @@ export const BoardGame = () => {
     <div className="container-inner">
         <section className="boardgame-section">
 
-          <BoardGameCard />
+          {BoardGameItem.map(board_game => (
+            <BoardGameCard{...board_game}/>
+          ))}
 
         </section>
     </div>
