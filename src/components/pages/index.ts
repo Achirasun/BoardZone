@@ -3,5 +3,6 @@ export * from "./BoardGame"
 export * from "./Login"
 export * from "./Register"
 export * from "./Lobby"
+export * from "./CreateLobby"
 export * from "./Funds"
 

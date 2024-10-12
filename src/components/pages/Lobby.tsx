@@ -1,45 +1,45 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './Lobby.css';
 import { RxAvatar } from "react-icons/rx";
-import { NavBar } from "../../components/NavBar/NavBar";
-
+import {useLobby } from "../../data/LobbyData"
 
 export const Lobby = () => {
+  // const [lobbies, setLobbies] = useState<LobbyDetail[]>([]);
+  const { lobbies, addLobby, joinLobby, setLobbies } = useLobby();
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLobbies(prevLobbies => prevLobbies.filter(lobby => lobby.timeout > Date.now()));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [setLobbies]);
+
+  const formatTime = (timeout:number) => {
+    const remainingTime = timeout - Date.now();
+    const minutes = Math.floor(remainingTime / 60000);
+    const seconds = Math.floor((remainingTime % 60000) / 1000);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+  };
+  
   return (
     
     <div className='container-inner'>
       <div className="Lobby">
-        LObby <div>this is</div>
-        <div className="whitespace-pre-wrap"> </div>
-        <div>just test looby</div>
-        <div><RxAvatar /></div>
-        LObby <div>this is</div>
-        <div className="whitespace-pre-wrap"> </div>
-        <div>just test looby</div>
-        <div><RxAvatar /></div>
-        LObby <div>this is</div>
-        <div className="whitespace-pre-wrap"> </div>
-        <div>just test looby</div>
-        <div><RxAvatar /></div>
-        LObby <div>this is</div>
-        <div className="whitespace-pre-wrap"> </div>
-        <div>just test looby</div>
-        <div><RxAvatar /></div>
-        LObby <div>this is</div>
-        <div className="whitespace-pre-wrap"> </div>
-        <div>just test looby</div>
-        <div><RxAvatar /></div>
-        LObby <div>this is</div>
-        <div className="whitespace-pre-wrap"> </div>
-        <div>just test looby</div>
-        <div><RxAvatar /></div>
-        LObby <div>this is</div>
-        <div className="whitespace-pre-wrap"> </div>
-        <div>just test looby</div>
-        <div><RxAvatar /></div>
-        
-        
+      <button onClick={() => addLobby('New Lobby', 4)}>Add Lobby</button>
+        {lobbies.map(lobby => (
+          <div key={lobby.id} className="lobby-detail">
+            <img src={lobby.image} alt="" />
+            <span>{lobby.name}</span>
+            <span>
+              <div>time remain:</div>
+              <div>{formatTime(lobby.timeout)}</div>
+            </span>
+            <span>{`Players: ${lobby.currentPlayers}/${lobby.maxPlayers}`}</span>
+            <button onClick={() => joinLobby(lobby.id)}>Join</button>
+          </div>
+        ))}
       </div>
     </div>
     
