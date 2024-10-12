@@ -1,0 +1,44 @@
+.Register {
+    background-color: #2E2E2E;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* padding: 0px 30vmax; */
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+
+.title {
+  display: flex;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  text-decoration: none; /* Removes the underline */
+}
+
+/* .whitespace-pre-wrap {
+  height: 20px;
+} */
+
+.signup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px; /* Adjust the gap between the text and button as needed */
+  flex-wrap: wrap;
+  padding-top: 7vh;
+}
+
+.signup-container p {
+  margin: 0; /* Remove default margin from the paragraph */
+}
+
+.signup-container button {
+  /* padding: 10px 20px; /* Adjust padding for the button */
+  font-size: calc(10px + 2vmin); /* Ensure the button text size matches */
+  background: none; /* Removes the fill color */
+  border: none; /* Removes the border */
+  color: #ffc228; 
+}
