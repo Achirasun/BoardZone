@@ -2,28 +2,43 @@ import React from 'react'
 import './FundList.css'
 import FList from '../FList/FList'
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
-const games = [
-  { name: 'Board game name 1', details: 'detail...', progress: 85, price: 2490 },
-  { name: 'Board game name 2', details: 'detail...', progress: 20, price: 599 },
-  { name: 'Board game name 3', details: 'detail...', progress: 50, price: 900 },
-  { name: 'Board game name 4', details: 'detail...', progress: 15, price: 1599 },
-  { name: 'Board game name 5', details: 'detail...', progress: 90, price: 350 },
-];
+interface data {
+  name: string;
+  details: string;
+  current: number;
+  target: number;
+}
 
 const FundList: React.FC = () => {
+  const navigate = useNavigate();
+
+  const games: data[] = [
+    { name: 'Board game name 1', details: 'detail...', current: 1885, target: 2490 },
+    { name: 'Board game name 2', details: 'detail...', current: 220, target: 599 },
+    { name: 'Board game name 3', details: 'detail...', current: 150, target: 900 },
+    { name: 'Board game name 4', details: 'detail...', current: 1555, target: 1599 },
+    { name: 'Board game name 5', details: 'detail...', current: 90, target: 350 },
+  ];
+
+  const handleFundClick = (game: data) => {
+    // Navigate to the detail page with fund ID or data
+    navigate(`/funds/${game.name}`, { state: { game } });
+  };
+
   return (
     <div id="fundContainer">
       {games.map((game, index) => (
-        <Link to='/funds/detail'>
+        <li onClick={() => handleFundClick(game)}>
           <FList
             key={index}
             name={game.name}
             details={game.details}
-            progress={game.progress}
-            price={game.price}
+            current={game.current}
+            target={game.target}
           />
-        </Link>
+        </li>
       ))}
       <div id="center">
         <Link to='/funds/post'>

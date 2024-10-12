@@ -4,11 +4,11 @@ import './FList.css'
 interface data {
   name: string;
   details: string;
-  progress: number; // Value between 0 and 100
-  price: number;
+  current: number;
+  target: number;
 }
 
-const FList: React.FC<data> = ({ name, details, progress, price }) => {
+const FList: React.FC<data> = ({ name, details, current, target }) => {
   return (
     <div id="listContainer">
       <div id="iconContainer">
@@ -18,11 +18,11 @@ const FList: React.FC<data> = ({ name, details, progress, price }) => {
         <p id="BoardGameTitle">{name}</p>
         <p id="BoardGameDetails">{details}</p>
         <div style={styles.progressBarContainer}>
-          <div style={{ ...styles.progressBar, width: `${progress}%` }} />
+          <div style={{ ...styles.progressBar, width: `${current / target * 100}%` }} />
         </div>
       </div>
       <div id="priceContainer">
-        <span>{price} THB</span>
+        <span>{target} THB</span>
       </div>
     </div>
   );
