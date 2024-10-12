@@ -48,3 +48,10 @@
     border-radius: 27px;
     border: none;
   }
+
+.error-message {
+  color:red;
+  font-size: calc(10px + 1vmin);
+  align-items: center;
+  display: flex;
+}
