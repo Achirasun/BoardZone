@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import './BoardGameCard.css'
 
 interface BoardGameProps {
-    id: number
+    id: string
     name: string
     description: string
     max_player: number
@@ -14,8 +14,12 @@ const BoardGameCard: React.FC<BoardGameProps> = (boardgame: BoardGameProps)  => 
 
     const navigate = useNavigate();
 
+    const goToPage = (item: BoardGameProps) => {
+        navigate(`/boardgame/${item.id}`, {state: item})
+    }
+
     return (
-        <div className="boardgame-card" onClick={() => navigate("/lobby")}>
+        <div className="boardgame-card" onClick={() => goToPage(boardgame)}>
             <div className="img">
                 <img src={boardgame.image} alt="" />
             </div>

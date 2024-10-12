@@ -1,0 +1,42 @@
+.back-button {
+    width: 94px;
+    height: 50px;
+    background: none;
+    border: 2px solid #daa520;
+    border-radius: 5px;
+
+    color: #daa520;
+    text-align: center;
+    font-size: 25px;
+
+    cursor: pointer;
+}
+
+.back-button:hover {
+    border: 3px solid #ffc228;
+    color: #ffc228;
+}
+
+.main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-section {
+    margin: 50px;
+    width: 400px;
+    height: 420px;
+    border-radius: 15px;
+}
+
+.image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.boardgame-title {
+    color: white;
+}

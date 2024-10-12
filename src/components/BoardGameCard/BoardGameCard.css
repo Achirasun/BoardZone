@@ -6,6 +6,8 @@
     background-color: #3a3838;
     border-radius: 27px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.2);
+
+    cursor: pointer;
 }
 
 .boardgame-card .img {
