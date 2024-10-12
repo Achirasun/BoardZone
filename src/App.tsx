@@ -29,7 +29,7 @@ function App() {
           <Route path="/funds" element={<Funds />} />
           <Route path="/funds/post" element={<Post />} />
           <Route path="/funds/:id" element={<FDetail />} />
-          {/* <Route path="/createlobby" element={<CreateLobby />} /> */}
+          <Route path="/createlobby" element={<CreateLobby />} />
         </Routes>
       </div>
     </div>
