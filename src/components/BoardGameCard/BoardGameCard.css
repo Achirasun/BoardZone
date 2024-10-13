@@ -10,6 +10,10 @@
     cursor: pointer;
 }
 
+.boardgame-card:hover {
+    background-color: #2e2e2e;
+}
+
 .boardgame-card .img {
     width: 100%;
     height: 200px;
