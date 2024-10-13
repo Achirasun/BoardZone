@@ -5,6 +5,8 @@
 npm install react-icons --sav
 <br>
 npm install react-router-dom
+<br>
+npm install axios
 
 # วิธี Run Local Host
 
