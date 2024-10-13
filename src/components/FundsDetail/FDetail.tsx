@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useLocation, useParams } from 'react-router-dom'
 
 interface data {
+  id: number;
   name: string;
   details: string;
   current: number;

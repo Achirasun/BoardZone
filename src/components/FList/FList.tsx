@@ -2,13 +2,14 @@ import React from 'react'
 import './FList.css'
 
 interface data {
+  id: number;
   name: string;
   details: string;
   current: number;
   target: number;
 }
 
-const FList: React.FC<data> = ({ name, details, current, target }) => {
+const FList: React.FC<data> = ({ id, name, details, current, target }) => {
   return (
     <div id="listContainer">
       <div id="iconContainer">
