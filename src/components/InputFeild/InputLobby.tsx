@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import './styles.css';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { FaRegClock, FaLocationDot } from "react-icons/fa6";
 import { useLobby } from '../../data/LobbyData';
 
-
-const InputLobby: React.FC = () => {
+const InputLobby = () => {
   const [inputplace, setPlace] = useState('');
   const [inputtime, setTime] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { lobbies, addLobby, joinLobby, setLobbies } = useLobby();
+  const location = useLocation();
+  const { name, maxPlayer } = location.state as { name: string; maxPlayer: number };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,7 +24,7 @@ const InputLobby: React.FC = () => {
     console.log('Input Place:', inputplace);
     console.log('Input Time:', inputtime, 'minute');
     // Add your login logic here
-    addLobby('BoardGame Gu Yaik Tai', 8, inputplace, parseInt(inputtime));
+    addLobby(name, maxPlayer, inputplace, parseInt(inputtime));
     
     navigate('/lobby');
   };

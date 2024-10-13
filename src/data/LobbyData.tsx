@@ -18,6 +18,7 @@ interface LobbyContextProps {
   addLobby: (name: string, maxPlayers: number, place: string, timeout: number) => void;
   joinLobby: (id: number) => void;
   setLobbies: React.Dispatch<React.SetStateAction<LobbyDetail[]>>;
+  leaveLobby: (id: number) => void;
 }
 
 const LobbyContext = createContext<LobbyContextProps | undefined>(undefined);
@@ -56,8 +57,18 @@ export const LobbyProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
+  const leaveLobby = (id: number) => {
+    setLobbies(prevLobbies =>
+      prevLobbies.map(lobby =>
+        lobby.id === id && lobby.currentPlayers > 0
+          ? { ...lobby, currentPlayers: lobby.currentPlayers - 1 }
+          : lobby
+      )
+    );
+  };
+
   return (
-    <LobbyContext.Provider value={{ lobbies, addLobby, joinLobby, setLobbies }}>
+    <LobbyContext.Provider value={{ lobbies, addLobby, joinLobby, setLobbies, leaveLobby }}>
       {children}
     </LobbyContext.Provider>
   );

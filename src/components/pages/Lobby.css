@@ -21,6 +21,11 @@
     color: #fff;
   }
   
+  .lobby-detail .title {
+    font-size: calc(10px + 3vmin);
+    color: #FFC228;
+  }
+
   .lobby-detail span {
     margin-left: 10px;
   }
@@ -65,5 +70,9 @@
     .lobby-detail span {
       margin-right: 0;
       margin-bottom: 10px;
+
+      display: flex;
+      align-items: center; /* Vertically centers the items */
+      gap: 5px;
     }
   }

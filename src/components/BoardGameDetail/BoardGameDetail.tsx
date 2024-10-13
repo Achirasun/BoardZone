@@ -40,7 +40,8 @@ const BoardGameDetail = () => {
                 </div>
             </div>
             <div className="create-lobby">
-                <button onClick={() => navigate(`/boardgame/${item.id}/createlobby`)}>Create Lobby</button>
+                <button onClick={() => navigate(`/boardgame/${item.id}/createlobby`,
+                    { state: { name: item.name, maxPlayer: item.max_player } })}>Create Lobby</button>
             </div>
         </div>
     )

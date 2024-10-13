@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { IoStar } from "react-icons/io5";
 import './LobbyDetails.css';
+import { useLobby } from "../../data/LobbyData"
 
 interface LobbyDetailProps {
   id: number;
@@ -17,6 +18,7 @@ const LobbyDetails: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const lobby = location.state as LobbyDetailProps;
+  const { leaveLobby } = useLobby();
 
   const [remainingTime, setRemainingTime] = useState(lobby.timeout - Date.now());
 
@@ -68,29 +70,16 @@ const LobbyDetails: React.FC = () => {
             <img src={lobby.image} alt={lobby.name} />
           </div>
 
-          <h2 className="lobby-title">Player: {lobby.currentPlayers} / {lobby.maxPlayers}</h2>
+          <p className="lobby-title">Player: {lobby.currentPlayers} / {lobby.maxPlayers}</p>
           <p className="location">Location: {lobby.place}</p>
           <p className="time-remaining">Time remaining: {formatTime(lobby.timeout)}</p>
-          <button className="leave-button" onClick={() => navigate(-1)}>Leave Table</button>
-
+            <button className="leave-button" onClick={(e) => {
+              e.stopPropagation();
+              leaveLobby(lobby.id);
+              navigate(-1); }}>Leave Lobby</button>
         </div>
         
     </div>
-    // <div className="lobbydetail container-inner">
-    //   <button className="back-button" onClick={() => navigate(-1)}>Back</button>
-    //   <div className="main-content">
-    //     <div className="image-section">
-    //       <img src={lobby.image} alt={lobby.name} />
-    //     </div>
-    //     <div className="description">
-    //       <h1 className="lobby-title">{lobby.name}</h1>
-    //       <p className="location">Location: {lobby.place}</p>
-    //       <p className="time-remaining">Time remaining: {formatTime(lobby.timeout)}</p>
-    //       <button className="leave-button" onClick={() => navigate(-1)}>Leave Table</button>
-    //     </div>
-    //   </div>
-    // </div>
-
     
   );
 };

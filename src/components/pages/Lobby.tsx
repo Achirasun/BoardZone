@@ -28,6 +28,7 @@ export const Lobby = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setLobbies(prevLobbies => prevLobbies.filter(lobby => lobby.timeout > Date.now()));
+      setLobbies(prevLobbies => prevLobbies.filter(lobby => lobby.currentPlayers > 0));
     }, 1000);
 
     return () => clearInterval(interval);
@@ -61,9 +62,9 @@ export const Lobby = () => {
         lobbies.map(lobby => (
           <div key={lobby.id} className="lobby-detail" onClick={() => handleLobbyClick(lobby)}>
             <img src={lobby.image} alt="" />
-            <span>{lobby.name}</span>
+            <span className='title'>{lobby.name}</span>
             <span>
-              <div>time remain:</div>
+              <div >Time remain:</div>
               <div>{formatTime(lobby.timeout)}</div>
             </span>
             <span>{`Players: ${lobby.currentPlayers}/${lobby.maxPlayers}`}</span>
