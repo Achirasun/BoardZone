@@ -36,7 +36,7 @@ const InputLobby: React.FC = () => {
         </div>
         <input
           type="text"
-          placeholder="Place"
+          placeholder="Location"
           className="input__box"
           value={inputplace}
           onChange={(e) => setPlace(e.target.value)}
@@ -48,7 +48,7 @@ const InputLobby: React.FC = () => {
         </div>
         <input
           type="number"
-          placeholder="Time to Play (minute)"
+          placeholder="Time (minute)"
           className="input__box"
           value={inputtime}
           onChange={(e) => setTime(e.target.value)}

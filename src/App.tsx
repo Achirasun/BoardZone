@@ -7,6 +7,7 @@ import Post from './components/FundsPost/Post';
 import FDetail from './components/FundsDetail/FDetail';
 import BoardGameDetail from './components/BoardGameDetail/BoardGameDetail';
 import { LobbyProvider } from './data/LobbyData';
+import LobbyDetails from './components/LobbyDetails/LobbyDetails';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/funds/post" element={<Post />} />
           <Route path="/funds/detail" element={<FDetail />} />
           <Route path="boardgame/:id/createlobby" element={<CreateLobby />} />
+          <Route path="/lobby/:id" element={<LobbyDetails />} />
         </Routes>
       </div>
     </div>

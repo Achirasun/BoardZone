@@ -1,0 +1,52 @@
+.container-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+  }
+  
+  .back-button {
+    align-self: flex-start;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .main-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .image-section img {
+    max-width: 300px;
+    border-radius: 10px;
+  }
+  
+  .description {
+    margin-left: 20px;
+  }
+  
+  .lobby-title {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+  
+  .location, .time-remaining {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .leave-button {
+    padding: 10px 20px;
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
