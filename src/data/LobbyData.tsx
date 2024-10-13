@@ -36,7 +36,7 @@ export const LobbyProvider = ({ children }: { children: ReactNode }) => {
   const addLobby = (name: string, maxPlayers: number, place: string, timeout: number) => {
     const newLobby: LobbyDetail = {
       id: Date.now(),
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRS7TwVJ0OAzfQ4CevUpqgP1b8TcEyINZwySA&s",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZDDfM_jPYcSyjhRjCb4bpdR3e1gKbw312bA&s",
       name,
       maxPlayers,
       currentPlayers: 1,

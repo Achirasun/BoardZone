@@ -1,33 +1,71 @@
-.container-inner {
+.LobbyDetails {
+  background-color: #2E2E2E;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 0px 30vmax; */
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.header .title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  text-decoration: none; /* Removes the underline */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.LobbyDetails .container-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
   }
   
-  .back-button {
-    align-self: flex-start;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
+  .header .back-button {
+
+
+    width: calc(10px + 10vmin);
+    height: calc(10px + 6vmin);
+    background: none;
+    border: 2px solid #daa520;
     border-radius: 5px;
+
+    color: #daa520;
+    text-align: center;
+    font-size: calc(10px + 2vmin);
+
     cursor: pointer;
   }
   
-  .main-content {
+  .LobbyDetails .main-content {
     display: flex;
     flex-direction: row;
     align-items: center;
   }
   
-  .image-section img {
-    max-width: 300px;
+  .LobbyDetails .image-section{
+    min-width: 50px;
+    min-height: 50px;
+    margin-right: 10px;
     border-radius: 10px;
   }
   
-  .description {
+  .LobbyDetails .description {
     margin-left: 20px;
   }
   

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, Link } from 'react-router-dom';
+import { IoStar } from "react-icons/io5";
 import './LobbyDetails.css';
 
 interface LobbyDetailProps {
@@ -52,20 +53,45 @@ const LobbyDetails: React.FC = () => {
   };
 
   return (
-    <div className="container-inner">
-      <button className="back-button" onClick={() => navigate(-1)}>Back</button>
-      <div className="main-content">
-        <div className="image-section">
-          <img src={lobby.image} alt={lobby.name} />
-        </div>
-        <div className="description">
-          <h1 className="lobby-title">{lobby.name}</h1>
+    <div >
+      <div className="header">
+        <button className="back-button" onClick={() => navigate("/lobby")}>Back</button>
+        <Link to="/lobby" className="title">
+          BOARD<IoStar color='ffc228'/>ZONE
+        </Link>
+      </div>
+        
+        <div className="LobbyDetails">
+          <h1>{lobby.name}</h1>
+          <div className="whitespace-pre-wrap"/>
+          <div className="image-section">
+            <img src={lobby.image} alt={lobby.name} />
+          </div>
+
+          <h2 className="lobby-title">Player: {lobby.currentPlayers} / {lobby.maxPlayers}</h2>
           <p className="location">Location: {lobby.place}</p>
           <p className="time-remaining">Time remaining: {formatTime(lobby.timeout)}</p>
           <button className="leave-button" onClick={() => navigate(-1)}>Leave Table</button>
+
         </div>
-      </div>
+        
     </div>
+    // <div className="lobbydetail container-inner">
+    //   <button className="back-button" onClick={() => navigate(-1)}>Back</button>
+    //   <div className="main-content">
+    //     <div className="image-section">
+    //       <img src={lobby.image} alt={lobby.name} />
+    //     </div>
+    //     <div className="description">
+    //       <h1 className="lobby-title">{lobby.name}</h1>
+    //       <p className="location">Location: {lobby.place}</p>
+    //       <p className="time-remaining">Time remaining: {formatTime(lobby.timeout)}</p>
+    //       <button className="leave-button" onClick={() => navigate(-1)}>Leave Table</button>
+    //     </div>
+    //   </div>
+    // </div>
+
+    
   );
 };
 

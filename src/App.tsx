@@ -30,7 +30,7 @@ function App() {
           <Route path="/funds" element={<Funds />} />
           <Route path="/funds/post" element={<Post />} />
           <Route path="/funds/:id" element={<FDetail />} />
-          <Route path="/createlobby" element={<CreateLobby />} />
+          <Route path="/boardgame/:id/createlobby" element={<CreateLobby />} />
           <Route path="/lobby/:id" element={<LobbyDetails />} />
         </Routes>
       </div>
