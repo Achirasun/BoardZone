@@ -25,17 +25,22 @@ const BoardGameDetail = () => {
     }
 
     return (
-        <div className="container-inner">
+        <div className="container-inner boardgame-detail">
             <button className="back-button" onClick={() => navigate(-1)}>Back</button>
             <div className="main-content">
                 <div className="image-section">
                     <img src={item.image} alt="" />
                 </div>
-                <div className="description">
-                <button onClick={() => navigate(`/boardgame/${item.id}/createlobby`)}>createlobby</button>
-                    <h1 className="boardgame-title">{item.name}</h1>
+                <div className="details">
+                    <div className="detail-title">
+                        <h1 className="name">{item.name}</h1>
+                        <div className="status">Available</div>
+                    </div>
                     <p className="description">{item.description}</p>
                 </div>
+            </div>
+            <div className="create-lobby">
+                <button onClick={() => navigate(`/boardgame/${item.id}/createlobby`)}>Create Lobby</button>
             </div>
         </div>
     )

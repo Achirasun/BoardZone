@@ -1,4 +1,8 @@
-.back-button {
+.boardgame-detail {
+    width: 100%;
+}
+
+.boardgame-detail .back-button {
     width: 94px;
     height: 50px;
     background: none;
@@ -12,31 +16,93 @@
     cursor: pointer;
 }
 
-.back-button:hover {
+.boardgame-detail .back-button:hover {
     border: 3px solid #ffc228;
     color: #ffc228;
 }
 
-.main-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.boardgame-detail .main-content {
+    display: grid;
+    grid-template-columns: 400px auto;
+    gap: 50px;
+    padding: 50px;
 }
 
-.image-section {
-    margin: 50px;
+.boardgame-detail .image-section {
     width: 400px;
     height: 420px;
     border-radius: 15px;
 }
 
-.image-section img {
+.boardgame-detail .image-section img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 15px;
 }
 
-.boardgame-title {
+.boardgame-detail .details {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.boardgame-detail .detail-title {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+}
+
+.boardgame-detail .detail-title .name {
     color: white;
+    font-size: 50px;
+}
+
+.boardgame-detail .detail-title .status {
+    width: 100px;
+    height: 45px;
+    border: 3px solid #add0f0;
+    border-radius: 5px;
+    color: #add0f0;
+
+    font-size: 19px;
+    font-weight: 500;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boardgame-detail .description {
+    padding: 10px;
+    background-color: #aeaeae;
+    border-radius: 15px;
+
+    font-size: 16px;
+}
+
+.boardgame-detail .create-lobby {
+    padding: 20px;
+    display: flex;
+    justify-content: end;
+}
+
+.boardgame-detail .create-lobby button {
+    width: 250px;
+    height: 70px;
+
+    background: none;
+    border: 5px solid #06d200;
+    border-radius: 5px;
+
+    color: #06d200;
+    font-size: 32px;
+}
+
+.boardgame-detail .create-lobby button:hover {
+    border-color: #0fad0a;
+
+    color: #0fad0a;
+
 }
