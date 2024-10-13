@@ -4,7 +4,7 @@ import './BoardGameDetail.css'
 import { create } from 'domain'
 
 interface BoardGameProps {
-    id: string
+    id: number
     name: string
     description: string
     max_player: number

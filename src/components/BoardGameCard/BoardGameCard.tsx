@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import './BoardGameCard.css'
 
 interface BoardGameProps {
-    id: string
+    id: number
     name: string
     description: string
     max_player: number
