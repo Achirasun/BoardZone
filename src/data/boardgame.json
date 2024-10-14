@@ -20,6 +20,6 @@
         "name": "Werewolf",
         "description": "Test2",
         "max_player": 100,
-        "image": "/images/boardgame/im-the-boss.jpg"
+        "image": "https://steamuserimages-a.akamaihd.net/ugc/2030598429688044994/C716C72A670B9F0CFDC4E7D46F918733DB33F3DF/?imw=512&imh=391&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true"
     }
 ]

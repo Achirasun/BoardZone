@@ -5,6 +5,7 @@ import { RxAvatar } from "react-icons/rx";
 import { useLobby } from "../../data/LobbyData"
 import { Link, useNavigate } from 'react-router-dom';
 import { UserContext } from "../../data/UserContext"
+import axios from 'axios';
 
 interface LobbyDetail {
   //ส่วนทำงานจากเครื่อง
@@ -25,11 +26,23 @@ export const Lobby = () => {
   const { lobbies, addLobby, joinLobby, setLobbies } = useLobby();
   const navigate = useNavigate();
   const userContext = useContext(UserContext);
+  const userlobby = userContext?.userLobby
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setLobbies(prevLobbies => prevLobbies.filter(lobby => lobby.timeout > Date.now()));
-      setLobbies(prevLobbies => prevLobbies.filter(lobby => lobby.currentPlayers > 0));
+    const interval = setInterval(async () => {
+      const now = Date.now();
+
+      // Filter out expired lobbies and delete them from the backend
+      const expiredLobbies = lobbies.filter(lobby => lobby.timeout <= now || lobby.currentPlayers <= 0);
+      for (const lobby of expiredLobbies) {
+        try {
+          await axios.delete(`http://localhost:8080/api/lobbies/delete?lobby_id=${userlobby}`);
+          console.log(`Deleted lobby with ID: ${userlobby} (${lobby.id})`);
+        } catch (error) {
+          console.error(`Failed to delete lobby with ID: ${lobby.id}`, error);
+        }
+      }
+      setLobbies(prevLobbies => prevLobbies.filter(lobby => lobby.timeout > now && lobby.currentPlayers > 0));
       console.log('Hello, User ID:', userContext?.userId);
     }, 1000);
 

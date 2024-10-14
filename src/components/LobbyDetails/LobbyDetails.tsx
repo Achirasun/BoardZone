@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { IoStar } from "react-icons/io5";
 import './LobbyDetails.css';
 import { useLobby } from "../../data/LobbyData"
+import { UserContext } from '../../data/UserContext';
+import axios from 'axios';
 
 interface LobbyDetailProps {
   id: number;
@@ -19,6 +21,7 @@ const LobbyDetails: React.FC = () => {
   const location = useLocation();
   const lobby = location.state as LobbyDetailProps;
   const { leaveLobby } = useLobby();
+  const userContext = useContext(UserContext);
 
   const [remainingTime, setRemainingTime] = useState(lobby.timeout - Date.now());
 
@@ -41,7 +44,19 @@ const LobbyDetails: React.FC = () => {
     );
   }
 
-  
+  const handleLeaveLobby = async () => {
+    try {
+      const response = await axios.post(`http://localhost:8080/api/lobbies/leave?user_id=${userContext?.userId}`);
+      const lobbyId = response.data.lobby_id;
+      userContext?.setUserLobby(lobbyId);
+      console.log('Leaving, Lobby ID:', userContext?.userLobby, userContext?.userId);
+      leaveLobby(lobby.id);
+      navigate('/lobby');
+      
+    } catch (error) {
+      console.error("YOU CANT LEAVE HAHAHAHAHAHAHAHAHA AHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH:", error);
+    }
+  };
 
   const formatTime = (timeout: number) => {
     const remainingTime = timeout - Date.now();
@@ -75,8 +90,8 @@ const LobbyDetails: React.FC = () => {
           <p className="time-remaining">Time remaining: {formatTime(lobby.timeout)}</p>
             <button className="leave-button" onClick={(e) => {
               e.stopPropagation();
-              leaveLobby(lobby.id);
-              navigate(-1); }}>Leave Lobby</button>
+              handleLeaveLobby();
+            }}>Leave Lobby</button>
         </div>
         
     </div>

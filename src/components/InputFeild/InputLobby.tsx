@@ -24,9 +24,16 @@ const InputLobby = () => {
       return;
     }
 
+    if (!userContext?.userId){
+      console.log('cant get userId');
+      setError('Can not get User_Id. Please try again.');
+      return;
+    }
+
     setError('');
     try {
       // Axios POST request to register user
+      
       const timenow = Date.now();
       const timeout = timenow + (parseInt(inputtime) * 60000)
       const response = await axios.post(`http://localhost:8080/api/lobbies/create?boardgame_id=${id}`, {
@@ -37,7 +44,8 @@ const InputLobby = () => {
       const lobbyId = response.data.lobby_id;
       console.log('Create Lobby successful, Lobby ID:', lobbyId);
       userContext?.setUserLobby(lobbyId);
-      const joinresponse = await axios.post(`http://localhost:8080/api/lobbies/join?user_id=${userContext?.userId}&?lobby_id=${lobbyId}`);
+      const joinresponse = await axios.post(`http://localhost:8080/api/lobbies/join?user_id=${userContext?.userId}&lobby_id=${lobbyId}`);
+      
       navigate('/');
     } catch (error) {
       console.error('Create Lobby failed:', error);
