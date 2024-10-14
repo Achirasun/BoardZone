@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './styles.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { FaRegClock, FaLocationDot } from "react-icons/fa6";
 import { useLobby } from '../../data/LobbyData';
+import { UserContext } from '../../data/UserContext';
+import axios from 'axios';
 
 const InputLobby = () => {
   const [inputplace, setPlace] = useState('');
@@ -11,18 +13,37 @@ const InputLobby = () => {
   const navigate = useNavigate();
   const { lobbies, addLobby, joinLobby, setLobbies } = useLobby();
   const location = useLocation();
-  const { name, maxPlayer, iMage } = location.state as { name: string; maxPlayer: number; iMage: string };
+  const { id, name, maxPlayer, iMage } = location.state as { id: number; name: string; maxPlayer: number; iMage: string };
+  const userContext = useContext(UserContext);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!inputplace || !inputtime) {
       setError('Place and Time to play cannot be empty');
       return;
     }
 
     setError('');
-    console.log('Input Place:', inputplace);
-    console.log('Input Time:', inputtime, 'minute');
+    try {
+      // Axios POST request to register user
+      const timenow = Date.now();
+      const timeout = timenow + (parseInt(inputtime) * 60000)
+      const response = await axios.post(`http://localhost:8080/api/lobbies/create?boardgame_id=${id}`, {
+        lobby_description : inputplace,
+        lobby_created_at : timenow,
+        lobby_ended_at : timeout
+      });
+      const lobbyId = response.data.lobby_id;
+      console.log('Create Lobby successful, Lobby ID:', lobbyId);
+      userContext?.setUserLobby(lobbyId);
+      const joinresponse = await axios.post(`http://localhost:8080/api/lobbies/join?user_id=${userContext?.userId}&?lobby_id=${lobbyId}`);
+      navigate('/');
+    } catch (error) {
+      console.error('Create Lobby failed:', error);
+      setError('Create Lobby failed. Please try again.');
+    }
+  
     // Add your login logic here
     addLobby(name, maxPlayer, iMage, inputplace, parseInt(inputtime));
     

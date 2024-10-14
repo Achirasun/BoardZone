@@ -35,6 +35,7 @@ const BoardGameDetail = () => {
         } else {
             navigate(`/boardgame/${item.id}/createlobby`,
                 { state: { 
+                    id: item.id,
                     name: item.name, 
                     maxPlayer: item.max_player, 
                     iMage: item.image } })
