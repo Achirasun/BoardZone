@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { RxAvatar } from "react-icons/rx";
 import { MdOutlinePassword } from "react-icons/md";
 import './styles.css';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from '../../data/UserContext';
 import axios from 'axios';
 
 const InputRegister: React.FC = () => {
@@ -11,6 +12,7 @@ const InputRegister: React.FC = () => {
   const [confirmpassword, setconfirmPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const userContext = useContext(UserContext);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -30,7 +32,9 @@ const InputRegister: React.FC = () => {
         user_name: username,
         user_password: password,
       });
-      console.log('Registration successful:', response.data);
+      const userId = response.data.user_id;
+      console.log('Registration successful, User ID:', userId);
+      userContext?.setUserId(userId);
       navigate('/');
     } catch (error) {
       console.error('Registration failed:', error);

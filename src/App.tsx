@@ -8,9 +8,11 @@ import FDetail from './components/FundsDetail/FDetail';
 import BoardGameDetail from './components/BoardGameDetail/BoardGameDetail';
 import { LobbyProvider } from './data/LobbyData';
 import LobbyDetails from './components/LobbyDetails/LobbyDetails';
+import { UserProvider } from './data/UserContext';
 
 function App() {
   return (
+    < UserProvider >
     <LobbyProvider>
     <div>
 
@@ -36,6 +38,7 @@ function App() {
       </div>
     </div>
     </LobbyProvider>
+    </UserProvider>
   );
 }
 

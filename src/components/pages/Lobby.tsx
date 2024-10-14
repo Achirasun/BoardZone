@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './Lobby.css';
 import { RxAvatar } from "react-icons/rx";
 import { useLobby } from "../../data/LobbyData"
-// import { LobbyDetail } from '../../data/LobbyData';
 import { Link, useNavigate } from 'react-router-dom';
+import { UserContext } from "../../data/UserContext"
 
 interface LobbyDetail {
   //ส่วนทำงานจากเครื่อง
@@ -24,11 +24,13 @@ export const Lobby = () => {
   // const [lobbies, setLobbies] = useState<LobbyDetail[]>([]);
   const { lobbies, addLobby, joinLobby, setLobbies } = useLobby();
   const navigate = useNavigate();
+  const userContext = useContext(UserContext);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setLobbies(prevLobbies => prevLobbies.filter(lobby => lobby.timeout > Date.now()));
       setLobbies(prevLobbies => prevLobbies.filter(lobby => lobby.currentPlayers > 0));
+      console.log('Hello, User ID:', userContext?.userId);
     }, 1000);
 
     return () => clearInterval(interval);
