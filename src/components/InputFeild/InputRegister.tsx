@@ -3,6 +3,7 @@ import { RxAvatar } from "react-icons/rx";
 import { MdOutlinePassword } from "react-icons/md";
 import './styles.css';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const InputRegister: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -11,7 +12,7 @@ const InputRegister: React.FC = () => {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!username || !password || !confirmpassword) {
       setError('Username and Password cannot be empty');
@@ -23,10 +24,18 @@ const InputRegister: React.FC = () => {
       }
 
     setError('');
-    console.log('Username:', username);
-    console.log('Password:', password);
-    // Add your login logic here
-    navigate('/');
+    try {
+      // Axios POST request to register user
+      const response = await axios.post('http://localhost:8080/api/users/register', {
+        user_name: username,
+        user_password: password,
+      });
+      console.log('Registration successful:', response.data);
+      navigate('/');
+    } catch (error) {
+      console.error('Registration failed:', error);
+      setError('Registration failed. Please try again.');
+    }
   };
 
   return (
