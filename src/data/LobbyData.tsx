@@ -15,7 +15,7 @@ interface LobbyDetail {
 
 interface LobbyContextProps {
   lobbies: LobbyDetail[];
-  addLobby: (name: string, maxPlayers: number, place: string, timeout: number) => void;
+  addLobby: (name: string, maxPlayers: number, image: string, place: string, timeout: number) => void;
   joinLobby: (id: number) => void;
   setLobbies: React.Dispatch<React.SetStateAction<LobbyDetail[]>>;
   leaveLobby: (id: number) => void;
@@ -34,10 +34,10 @@ export const useLobby = () => {
 export const LobbyProvider = ({ children }: { children: ReactNode }) => {
   const [lobbies, setLobbies] = useState<LobbyDetail[]>([]);
 
-  const addLobby = (name: string, maxPlayers: number, place: string, timeout: number) => {
+  const addLobby = (name: string, maxPlayers: number, image: string, place: string, timeout: number) => {
     const newLobby: LobbyDetail = {
       id: Date.now(),
-      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZDDfM_jPYcSyjhRjCb4bpdR3e1gKbw312bA&s",
+      image,
       name,
       maxPlayers,
       currentPlayers: 1,

@@ -62,12 +62,13 @@
     align-items: center;
   }
   
-  .LobbyDetails .image-section{
-    min-width: 50px;
-    min-height: 50px;
-    margin-right: 10px;
-    border-radius: 10px;
+  .LobbyDetails .image-section img{
+    max-height: 50vh;
+    max-height: 70vh;
+    border-radius: 30px;
   }
+
+  
   
   .LobbyDetails .description {
     margin-left: 20px;
@@ -85,12 +86,14 @@
   
   .leave-button {
     width: 20%;
-    height: 40px;
+    min-height: 40px;
     margin-top: 10px;
+    min-width: calc(10px + 3vmin);
     font-size: calc(10px + 2vmin);
     background-color: transparent; /* No fill */
     color: #ff0000; /* Green text */
     border: 2px solid #ff0000; /* Green outline */
     border-radius: 5px;
+    display: inline-block;
   }
   

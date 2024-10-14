@@ -11,7 +11,7 @@ const InputLobby = () => {
   const navigate = useNavigate();
   const { lobbies, addLobby, joinLobby, setLobbies } = useLobby();
   const location = useLocation();
-  const { name, maxPlayer } = location.state as { name: string; maxPlayer: number };
+  const { name, maxPlayer, iMage } = location.state as { name: string; maxPlayer: number; iMage: string };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +24,7 @@ const InputLobby = () => {
     console.log('Input Place:', inputplace);
     console.log('Input Time:', inputtime, 'minute');
     // Add your login logic here
-    addLobby(name, maxPlayer, inputplace, parseInt(inputtime));
+    addLobby(name, maxPlayer, iMage, inputplace, parseInt(inputtime));
     
     navigate('/lobby');
   };
