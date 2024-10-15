@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 import './BoardGameDetail.css'
 import { create } from 'domain'
@@ -15,7 +15,8 @@ interface BoardGameProps {
 const BoardGameDetail = () => {
 
     const userContext = useContext(UserContext);
-
+    const userlobby = userContext?.userLobby;
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     const location = useLocation();
@@ -26,9 +27,16 @@ const BoardGameDetail = () => {
             <h1>No Board game right now!!! </h1>
         </div>
     }
+    
 
     const handleSubmit = async (e: React.FormEvent) => { //ตัวจัดการการกดส่ง
         e.preventDefault();
+        if (userlobby) {
+            setError('You already in some Lobby. Leave Lobby first to create');
+            console.log("You already in Lobby ID:", userlobby);
+            return;
+        }
+        setError('')
         const checkLogin = userContext?.userId; // ตัว user เรียกค่า userId
         if (!checkLogin) { // ถ้า userId เป็น null หรือ undefined
           navigate('/login'); //ส่งไปหน้าที่ต้องการ
@@ -53,12 +61,21 @@ const BoardGameDetail = () => {
                 <div className="details">
                     <div className="detail-title">
                         <h1 className="name">{item.name}</h1>
+                        {/* <div className={available ? 'available' : 'not-available'}>
+                            {available ? 'Available' : 'In Use'}
+                        </div> */}
                         <div className="status">Available</div>
                     </div>
                     <p className="description">{item.description}</p>
                 </div>
             </div>
             <form className="create-lobby" onSubmit={handleSubmit}>
+                {/* {userlobby ? (
+                    <button style={{ backgroundColor: 'gray' }} disabled>You Joined</button>
+                ) : (
+                    <button className='submit'>Create Lobby</button>
+                )} */}
+                {error && <p className='error-message'>{error}</p>}
                 <button type='submit'>Create Lobby</button>
             </form>
         </div>

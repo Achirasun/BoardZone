@@ -4,7 +4,7 @@ interface UserContextProps {
   userId: number | null;
   setUserId: (id: number) => void;
   userLobby: number | null;
-  setUserLobby: (userlobbyid: number) => void;
+  setUserLobby: (userlobbyid: number | null) => void;
 }
 
 const UserContext = createContext<UserContextProps | undefined>(undefined);

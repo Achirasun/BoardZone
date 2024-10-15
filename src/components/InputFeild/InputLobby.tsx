@@ -37,7 +37,7 @@ const InputLobby = () => {
       const timenow = Date.now();
       const timeout = timenow + (parseInt(inputtime) * 60000)
       const response = await axios.post(`http://localhost:8080/api/lobbies/create?boardgame_id=${id}`, {
-        lobby_description : inputplace,
+        lobby_location : inputplace,
         lobby_created_at : timenow,
         lobby_ended_at : timeout
       });

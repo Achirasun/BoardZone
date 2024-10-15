@@ -47,8 +47,8 @@ const LobbyDetails: React.FC = () => {
   const handleLeaveLobby = async () => {
     try {
       const response = await axios.post(`http://localhost:8080/api/lobbies/leave?user_id=${userContext?.userId}`);
-      const lobbyId = response.data.lobby_id;
-      userContext?.setUserLobby(lobbyId);
+      // const lobbyId = response.data.lobby_id;
+      // userContext?.setUserLobby(null);
       console.log('Leaving, Lobby ID:', userContext?.userLobby, userContext?.userId);
       leaveLobby(lobby.id);
       navigate('/lobby');

@@ -38,8 +38,9 @@ export const Lobby = () => {
         try {
           await axios.delete(`http://localhost:8080/api/lobbies/delete?lobby_id=${userlobby}`);
           console.log(`Deleted lobby with ID: ${userlobby} (${lobby.id})`);
+          userContext?.setUserLobby(null);
         } catch (error) {
-          console.error(`Failed to delete lobby with ID: ${lobby.id}`, error);
+          console.error(`Failed to delete lobby with ID: ${userlobby}`, error);
         }
       }
       setLobbies(prevLobbies => prevLobbies.filter(lobby => lobby.timeout > now && lobby.currentPlayers > 0));
@@ -84,7 +85,11 @@ export const Lobby = () => {
             </span>
             <span>{`Players: ${lobby.currentPlayers}/${lobby.maxPlayers}`}</span>
             
-            <button onClick={(e) => { e.stopPropagation(); joinLobby(lobby.id); }}>Join</button>
+            {userlobby ? (
+                <button style={{ backgroundColor: 'gray' }} disabled>Joined</button>
+              ) : (
+                <button onClick={(e) => { e.stopPropagation(); joinLobby(lobby.id); }}>Join</button>
+              )}
           </div>
         ))
         )}
